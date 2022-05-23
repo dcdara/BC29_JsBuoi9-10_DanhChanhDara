@@ -41,24 +41,30 @@ function layThongTinNV(isAdd) {
         validation.kiemTraChuoiKiTu(_hoTen, "tbTen", "(*) Họ và tên nhân viên phải là chữ");
 
     //Kiểm tra Email
-    isValid &= validation.kiemTraRong(_email, "tbEmail", "(*)Vui lòng nhập email");
+    isValid &= validation.kiemTraRong(_email, "tbEmail", "(*)Vui lòng nhập email")
+        && validation.kiemTraEmail(_email, "tbEmail", "(*)Mail không đúng định dạng");
 
     //Kiểm tra mật khẩu
     isValid &= validation.kiemTraRong(_matKhau, "tbMatKhau", "(*) Vui lòng nhập mật khẩu")
-        && validation.kiemTraDoDaiKiTu(_matKhau, "tbMatKhau", 6, 10, "(*) Mật khẩu phải có độ dài từ 4-6 ký tự, bao gồm số, ký tự in hoa, ký tự đặc biệt");
+        && validation.kiemTraDoDaiKiTu(_matKhau, "tbMatKhau", 6, 10, "(*) Mật khẩu phải có độ dài từ 6-10 ký tự, chứa it nhất 1 ký tự số, 1 ký tự in hoa, 1 ký tự đặc biệt")
+        && validation.kiemTraMatKhau(_matKhau, "tbMatKhau","(*) Mật khẩu phải có độ dài từ 6-10 ký tự, chứa it nhất 1 ký tự số, 1 ký tự in hoa, 1 ký tự đặc biệt");
 
     //Kiểm tra ngày làm
     isValid &= validation.kiemTraRong(_ngayLam, "tbNgay", "(*) Ngày làm không được để trống");
 
     //Kiểm tra lương cơ bản
     isValid &= validation.kiemTraRong(_luongCoBan, "tbLuongCB", "(*) Vui lòng nhập lương cơ bản")
-    // && validation.kiemTraDoDaiKiTu(_luongCoBan, "tbLuongCB", 1000000, 20000000, "(*) Lương phải từ 1.000.000 đến 20.000.000");
+        && validation.kiemTraSo(_luongCoBan, "tbLuongCB", "(*) Lương cơ bản phải là số từ [0-9]");
+    // && validation.kiemTraDoDaiKiTu(_luongCoBan, "tbLuongCB","(*) Lương cơ bản phải là số từ 1.000.000 đến 20.000.000");
+
 
     //Kiểm tra chức vụ
     isValid &= validation.kiemTraChucVu("chucvu", "tbChucVu", "(*) Vui lòng chọn chức vụ");
 
     //Kiểm tra giờ làm
-    isValid &= validation.kiemTraRong(_gioLam, "tbGiolam", "(*) Vui lòng nhập giờ làm");
+    isValid &= validation.kiemTraRong(_gioLam, "tbGiolam", "(*) Vui lòng nhập giờ làm")
+        && validation.kiemTraSo(_gioLam, "tbGiolam", "(*) Giờ làm phải là số từ [0-9]");
+
 
     if (!isValid) return;
 
