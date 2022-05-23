@@ -58,6 +58,8 @@ function Validation() {
     return false;
   };
 
+
+  //Validation Tài khoản tồn tại
   this.kiemTraTenTaiKhoanTonTai = function (value, errorId, mess, arr) {
     var isStatus = true;
 
@@ -69,6 +71,58 @@ function Validation() {
     });
 
     if (isStatus) {
+      //true
+      getEle(errorId).innerHTML = "";
+      getEle(errorId).style.display = "none";
+      return true;
+    }
+
+    //false
+    getEle(errorId).innerHTML = mess;
+    getEle(errorId).style.display = "block";
+    return false;
+  };
+
+  //Validation Email
+  this.kiemTraEmail = function (value, errorId, mess) {
+    var letter = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+    if (value.match(letter)) {
+      //true
+      getEle(errorId).innerHTML = "";
+      getEle(errorId).style.display = "none";
+      return true;
+    }
+
+    //false
+    getEle(errorId).innerHTML = mess;
+    getEle(errorId).style.display = "block";
+    return false;
+  };
+
+
+  //Validation Number
+  this.kiemTraSo = function (value, errorId, mess) {
+    var letter = /^[0-9]+$/;
+
+    if (value.match(letter)) {
+      //true
+      getEle(errorId).innerHTML = "";
+      getEle(errorId).style.display = "none";
+      return true;
+    }
+
+    //false
+    getEle(errorId).innerHTML = mess;
+    getEle(errorId).style.display = "block";
+    return false;
+  };
+
+  //Validation Password
+  this.kiemTraMatKhau = function (value, errorId, mess) {
+    var letter = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{0,}$/;
+
+    if (value.match(letter)) {
       //true
       getEle(errorId).innerHTML = "";
       getEle(errorId).style.display = "none";
