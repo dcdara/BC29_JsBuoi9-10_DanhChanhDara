@@ -64,7 +64,7 @@ function NhanVien(_tenTaiKhoan, _hoTen, _email, _matKhau, _ngayLam, _luongCoBan,
 
         } else {
 
-            this.xepLoai = "Yếu";
+            this.xepLoai = "Trung bình";
 
         }
 
