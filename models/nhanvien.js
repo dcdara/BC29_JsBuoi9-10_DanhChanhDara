@@ -20,7 +20,7 @@ function NhanVien(_tenTaiKhoan, _hoTen, _email, _matKhau, _ngayLam, _luongCoBan,
         //Sử dụng switch..scase
 
         switch(this.chucVu){
-            case "Sếp":
+            case "Giám đốc":
                 this.tongLuong = new Intl.NumberFormat("vn-VN").format(this.luongCoBan * 3);
                 break;
             case "Trưởng phòng":
