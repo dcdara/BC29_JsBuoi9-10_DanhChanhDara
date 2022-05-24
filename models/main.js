@@ -29,7 +29,8 @@ function layThongTinNV(isAdd) {
     if (isAdd) {
         ////Kiểm tra tên tài khoản
         isValid &= validation.kiemTraRong(_tenTaiKhoan, "tbTKNV", "(*) Vui lòng nhập tài khoản")
-            && validation.kiemTraDoDaiKiTu(_tenTaiKhoan, "tbTKNV", 4, 6, "(*) Tên tài khoản phải có độ dài từ 4-6 ký tự")
+            && validation.kiemTraDoDaiKiTu(_tenTaiKhoan, "tbTKNV", 4, 6, "(*) Tên tài khoản phải có độ dài từ 4-6 ký tự không dấu, bao gồm các chữ cái thường a-z và số 0-9, không có chữ in hoa ")
+            && validation.kiemTraUsername(_tenTaiKhoan, "tbTKNV", "(*) Tên tài khoản bao gồm các chữ cái thường a-z và số 0-9, không có chữ in hoa")
             && validation.kiemTraTenTaiKhoanTonTai(_tenTaiKhoan, "tbTKNV", "(*) Tài khoản đã tồn tại", dsnv.arrNhanVien);
     }
 
@@ -42,7 +43,7 @@ function layThongTinNV(isAdd) {
 
     //Kiểm tra Email
     isValid &= validation.kiemTraRong(_email, "tbEmail", "(*)Vui lòng nhập email")
-        && validation.kiemTraEmail(_email, "tbEmail", "(*)Mail không đúng định dạng");
+        && validation.kiemTraEmail(_email, "tbEmail", "(*)Email không hợp lệ");
 
     //Kiểm tra mật khẩu
     isValid &= validation.kiemTraRong(_matKhau, "tbMatKhau", "(*) Vui lòng nhập mật khẩu")
@@ -54,8 +55,8 @@ function layThongTinNV(isAdd) {
 
     //Kiểm tra lương cơ bản
     isValid &= validation.kiemTraRong(_luongCoBan, "tbLuongCB", "(*) Vui lòng nhập lương cơ bản")
-        && validation.kiemTraSo(_luongCoBan, "tbLuongCB", "(*) Lương cơ bản phải là số từ [0-9]");
-    // && validation.kiemTraDoDaiKiTu(_luongCoBan, "tbLuongCB","(*) Lương cơ bản phải là số từ 1.000.000 đến 20.000.000");
+        && validation.kiemTraSo(_luongCoBan, "tbLuongCB", "(*) Lương cơ bản phải là số từ [0-9]")
+        && validation.kiemTraLuongCB(_luongCoBan,"tbLuongCB", "(*) Lương cơ bản phải từ 1.000.000 đến 20.000.000");
 
 
     //Kiểm tra chức vụ
@@ -63,7 +64,9 @@ function layThongTinNV(isAdd) {
 
     //Kiểm tra giờ làm
     isValid &= validation.kiemTraRong(_gioLam, "tbGiolam", "(*) Vui lòng nhập giờ làm")
-        && validation.kiemTraSo(_gioLam, "tbGiolam", "(*) Giờ làm phải là số từ [0-9]");
+        && validation.kiemTraSo(_gioLam, "tbGiolam", "(*) Giờ làm phải là số từ [0-9]")
+        && validation.kiemTraGioLam(_gioLam, "tbGiolam", "(*) Giờ làm phải từ 80 đến 200 giờ");
+
 
 
     if (!isValid) return;
@@ -116,6 +119,7 @@ function xoaNV(id) {
     dsnv.xoaNV(id);
     taoBang(dsnv.arrNhanVien);
     setLocalStorage();
+    return confirm("Bạn có chắc là bạn muốn xóa không?");
 }
 
 //Hàm sửa nhân viên
@@ -124,7 +128,6 @@ function suaNV(id) {
     if (nv) {
 
         //DOM tới các thẻ input hiện thị giá trị từ nhân viên
-
         getEle("tknv").value = nv.tenTaiKhoan;
         getEle("name").value = nv.hoTen;
         getEle("email").value = nv.email
@@ -160,6 +163,7 @@ getEle("searchName").addEventListener("keyup", function () {
 function reset() {
     getEle("huy").reset();
     getEle("tknv").disabled = false;
+    
 }
 //Hàm lưu dữ liệu xuống Local storage
 function setLocalStorage() {
