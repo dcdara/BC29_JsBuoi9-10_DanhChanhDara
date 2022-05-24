@@ -32,7 +32,7 @@ function DanhSachNhanVien() {
         if (index !== -1) {
             this.arrNhanVien.splice(index, 1);
         }
-    };
+    };  
 
     //Sửa nhân viên
 
