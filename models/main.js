@@ -35,7 +35,7 @@ function layThongTinNV(isAdd) {
     }
 
 
-
+    
     //Kiểm tra họ và tên
     isValid &=
         validation.kiemTraRong(_hoTen, "tbTen", "(*) Vui lòng nhập họ và tên") &&
@@ -48,7 +48,7 @@ function layThongTinNV(isAdd) {
     //Kiểm tra mật khẩu
     isValid &= validation.kiemTraRong(_matKhau, "tbMatKhau", "(*) Vui lòng nhập mật khẩu")
         && validation.kiemTraDoDaiKiTu(_matKhau, "tbMatKhau", 6, 10, "(*) Mật khẩu phải có độ dài từ 6-10 ký tự, chứa it nhất 1 ký tự số, 1 ký tự in hoa, 1 ký tự đặc biệt")
-        && validation.kiemTraMatKhau(_matKhau, "tbMatKhau","(*) Mật khẩu phải có độ dài từ 6-10 ký tự, chứa it nhất 1 ký tự số, 1 ký tự in hoa, 1 ký tự đặc biệt");
+        && validation.kiemTraMatKhau(_matKhau, "tbMatKhau", "(*) Mật khẩu phải có độ dài từ 6-10 ký tự, chứa it nhất 1 ký tự số, 1 ký tự in hoa, 1 ký tự đặc biệt");
 
     //Kiểm tra ngày làm
     isValid &= validation.kiemTraRong(_ngayLam, "tbNgay", "(*) Ngày làm không được để trống");
@@ -56,7 +56,7 @@ function layThongTinNV(isAdd) {
     //Kiểm tra lương cơ bản
     isValid &= validation.kiemTraRong(_luongCoBan, "tbLuongCB", "(*) Vui lòng nhập lương cơ bản")
         && validation.kiemTraSo(_luongCoBan, "tbLuongCB", "(*) Lương cơ bản phải là số từ [0-9]")
-        && validation.kiemTraLuongCB(_luongCoBan,"tbLuongCB", "(*) Lương cơ bản phải từ 1.000.000 đến 20.000.000");
+        && validation.kiemTraLuongCB(_luongCoBan, "tbLuongCB", "(*) Lương cơ bản phải từ 1.000.000 đến 20.000.000");
 
 
     //Kiểm tra chức vụ
@@ -163,7 +163,7 @@ getEle("searchName").addEventListener("keyup", function () {
 function reset() {
     getEle("huy").reset();
     getEle("tknv").disabled = false;
-    
+
 }
 //Hàm lưu dữ liệu xuống Local storage
 function setLocalStorage() {
