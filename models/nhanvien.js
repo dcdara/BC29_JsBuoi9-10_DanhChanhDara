@@ -21,14 +21,14 @@ function NhanVien(_tenTaiKhoan, _hoTen, _email, _matKhau, _ngayLam, _luongCoBan,
 
         switch(this.chucVu){
             case "Sếp":
-                this.tongLuong = this.luongCoBan * 3;
+                this.tongLuong = new Intl.NumberFormat("vn-VN").format(this.luongCoBan * 3);
                 break;
             case "Trưởng phòng":
-                this.tongLuong = this.luongCoBan * 2;
+                this.tongLuong = new Intl.NumberFormat("vn-VN").format(this.luongCoBan * 2);
                 break;
 
             case "Nhân viên":
-                this.tongLuong = this.luongCoBan;
+                this.tongLuong = new Intl.NumberFormat("vn-VN").format(this.luongCoBan);
                 break;
 
         }
