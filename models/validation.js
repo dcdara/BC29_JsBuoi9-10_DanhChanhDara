@@ -82,6 +82,7 @@ function Validation() {
     getEle(errorId).style.display = "block";
     return false;
   };
+
   //Validation Username
   this.kiemTraUsername = function (value, errorId, mess) {
     var letter = /^[a-z\-]+$/;
